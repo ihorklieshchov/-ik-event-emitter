@@ -1,13 +1,11 @@
-import {
-  describe, expect, it, jest,
-} from '@jest/globals';
+import { describe, expect, it, jest } from '@jest/globals';
 import { EventEmitter } from '../EventEmitter';
 
 describe('EventEmitter', () => {
   type EventMap = {
     meaningOfLife: [theAnswer: number];
     protagonist: [firstName: string, lastName: string];
-    beep: [],
+    beep: [];
   };
 
   describe('event type constraint', () => {
@@ -39,7 +37,9 @@ describe('EventEmitter', () => {
 
       emitter.addEventListener('meaningOfLife', listener);
       const emitTimes = 3;
-      new Array(emitTimes).fill(null).forEach(() => emitter.emit('meaningOfLife', 42));
+      new Array(emitTimes)
+        .fill(null)
+        .forEach(() => emitter.emit('meaningOfLife', 42));
 
       expect(listener).toBeCalledTimes(emitTimes);
 
@@ -55,7 +55,9 @@ describe('EventEmitter', () => {
 
       emitter.addEventListener('meaningOfLife', listener, { once: true });
       const emitTimes = 3;
-      new Array(emitTimes).fill(null).forEach(() => emitter.emit('meaningOfLife', 42));
+      new Array(emitTimes)
+        .fill(null)
+        .forEach(() => emitter.emit('meaningOfLife', 42));
 
       expect(listener).toBeCalledTimes(1);
     });

@@ -9,8 +9,15 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
 
   private once: Set<unknown> = new Set();
 
-  addEventListener<K extends keyof T>(name: K, listener: Listener<T[K]>, options?: Partial<AddEventListenerOptions>) {
-    const optionsWithDefaults: AddEventListenerOptions = { once: false, ...options };
+  addEventListener<K extends keyof T>(
+    name: K,
+    listener: Listener<T[K]>,
+    options?: Partial<AddEventListenerOptions>,
+  ) {
+    const optionsWithDefaults: AddEventListenerOptions = {
+      once: false,
+      ...options,
+    };
 
     const listeners = this.listeners[name] ?? new Set();
     this.listeners[name] = listeners;
