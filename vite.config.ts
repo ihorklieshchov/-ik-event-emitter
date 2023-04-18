@@ -23,7 +23,7 @@ export default defineConfig({
           sourceMap: false,
           declaration: true,
           outDir: "lib",
-          exclude: ["**/__tests__"],
+          exclude: ["**/__tests__", "**/*.spec.ts"],
         }),
         visualizer(),
       ]
