@@ -1,15 +1,16 @@
-type Listener<T extends Array<any>> = (...args: T) => void;
+type Listener<T extends Array<unknown>> = (...args: T) => void;
 
 type AddEventListenerOptions = {
   once: boolean;
-}
+};
 
-export class EventEmitter<T extends Record<string, Array<any>>> {
+export class EventEmitter<T extends Record<string, Array<unknown>>> {
   private listeners: { [K in keyof T]?: Set<Listener<T[K]>> } = {};
+
   private once: Set<unknown> = new Set();
 
   addEventListener<K extends keyof T>(name: K, listener: Listener<T[K]>, options?: Partial<AddEventListenerOptions>) {
-    const optionsWithDefaults: AddEventListenerOptions = Object.assign({ once: false }, options);
+    const optionsWithDefaults: AddEventListenerOptions = { once: false, ...options };
 
     const listeners = this.listeners[name] ?? new Set();
     this.listeners[name] = listeners;
@@ -40,12 +41,12 @@ export class EventEmitter<T extends Record<string, Array<any>>> {
       return;
     }
 
-    for (const listener of listeners) {
+    listeners.forEach((listener) => {
       listener(...args);
-      
+
       if (this.once.has(listener)) {
         this.removeEventListener(name, listener);
       }
-    }
+    });
   }
 }
