@@ -1,0 +1,30 @@
+{
+  "name": "@ik/event-emitter",
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/main.umd.cjs",
+  "module": "./lib/main.js",
+  "typings": "./lib/main.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/main.js",
+      "require": "./lib/main.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@types/node": "^18.15.11",
+    "rollup-plugin-visualizer": "^5.9.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
