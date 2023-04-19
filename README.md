@@ -124,6 +124,16 @@ In this case we can configure the listener to unsubscribe itself after event emi
 emitter.addEventListener('beep', listener, { once: true });
 ```
 
+### Aliases
+
+EventEmitter also provides aliases for some methods:
+| Alias | Method |
+| ------------- | ------------- |
+| ``on(name, listener, options) => void``  | addEventListener |
+| ``once(name, listener) => void``  | addEventListener <br/> (with once=true in options) |
+| ``off(name, listener) => void``  | removeEventListener  |
+
+
 ## License
 
 Distributed under the MIT License.

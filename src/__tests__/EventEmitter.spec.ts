@@ -91,4 +91,40 @@ describe('EventEmitter', () => {
       expect(listener).toBeCalledWith('Arthur', 'Dent');
     });
   });
+
+  describe('aliases', () => {
+    it('on as addEventListener', () => {
+      const emitter = new EventEmitter<EventMap>();
+      const listener = jest.fn();
+
+      emitter.on('beep', listener);
+      emitter.emit('beep');
+
+      expect(listener).toBeCalledTimes(1);
+    });
+
+    it('once as addEventListener with once=true', () => {
+      const emitter = new EventEmitter<EventMap>();
+      const listener = jest.fn();
+
+      emitter.once('beep', listener);
+      emitter.emit('beep');
+      emitter.emit('beep');
+
+      expect(listener).toBeCalledTimes(1);
+    });
+
+    it('off as removeEventListener', () => {
+      const emitter = new EventEmitter<EventMap>();
+      const listener = jest.fn();
+
+      emitter.on('beep', listener);
+      emitter.emit('beep');
+
+      emitter.removeEventListener('beep', listener);
+      emitter.emit('beep');
+
+      expect(listener).toBeCalledTimes(1);
+    });
+  });
 });

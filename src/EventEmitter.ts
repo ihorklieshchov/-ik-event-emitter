@@ -44,7 +44,7 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
    * Stores event listeners that were created with the once=true option
    * and should be removed after the first target event
    */
-  private once: Set<unknown> = new Set();
+  private onceList: Set<unknown> = new Set();
 
   /**
    * Subscribe listener to a specific event
@@ -68,7 +68,7 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
     listeners.add(listener);
 
     if (optionsWithDefaults.once) {
-      this.once.add(listener);
+      this.onceList.add(listener);
     }
   }
 
@@ -89,7 +89,7 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
       delete this.listeners[name];
     }
 
-    this.once.delete(listener);
+    this.onceList.delete(listener);
   }
 
   /**
@@ -107,9 +107,25 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
     listeners.forEach((listener) => {
       listener(...payload);
 
-      if (this.once.has(listener)) {
+      if (this.onceList.has(listener)) {
         this.removeEventListener(name, listener);
       }
     });
+  }
+
+  on<K extends keyof T>(
+    name: K,
+    listener: Listener<T[K]>,
+    options?: Partial<AddEventListenerOptions>,
+  ) {
+    this.addEventListener(name, listener, options);
+  }
+
+  once<K extends keyof T>(name: K, listener: Listener<T[K]>) {
+    this.addEventListener(name, listener, { once: true });
+  }
+
+  off<K extends keyof T>(name: K, listener: Listener<T[K]>) {
+    this.removeEventListener(name, listener);
   }
 }
