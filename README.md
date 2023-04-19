@@ -15,6 +15,7 @@
       <li><a href="#with-constraints">With constraints</a></li>
       <li><a href="#inheriting-from-eventemitter">Inheriting from EventEmitter</a></li>
       <li><a href="#one-time-subscription">One-time subscription</a></li>
+      <li><a href="#api">API</a></li>
     </ul>
   </li>
   <li><a href="#license">License</a></li>
@@ -124,14 +125,17 @@ In this case we can configure the listener to unsubscribe itself after event emi
 emitter.addEventListener('beep', listener, { once: true });
 ```
 
-### Aliases
+### API
 
-EventEmitter also provides aliases for some methods:
-| Alias | Method |
+| Method | Description |
 | ------------- | ------------- |
-| ``on(name, listener, options) => void``  | addEventListener |
-| ``once(name, listener) => void``  | addEventListener <br/> (with once=true in options) |
-| ``off(name, listener) => void``  | removeEventListener  |
+| ``addEventListener(name, listener, options) => void`` | Subscribe listener to a specific event |
+| ``emit(name, ...payload) => void`` | Emit event by name with required payload data |
+| ``removeEventListener(name, listener) => void`` | Unsubscribe listener from a specific event |
+| ``removeAllEventListeners() => void`` | Unsubscribe all listeners from all events |
+| ``on(name, listener, options) => void``  | alias for addEventListener |
+| ``once(name, listener) => void``  | alias for addEventListener (with once=true in options) |
+| ``off(name, listener) => void``  | alias for removeEventListener  |
 
 
 ## License

@@ -93,6 +93,14 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
   }
 
   /**
+   * Unsubscribe all listeners from all events
+   */
+  removeAllEventListeners() {
+    this.listeners = {};
+    this.onceList.clear();
+  }
+
+  /**
    * Emit event by name with required payload data
    *
    * @param name - event name

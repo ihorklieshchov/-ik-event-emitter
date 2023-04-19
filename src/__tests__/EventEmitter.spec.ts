@@ -61,6 +61,22 @@ describe('EventEmitter', () => {
 
       expect(listener).toBeCalledTimes(1);
     });
+
+    it('remove all listeners', () => {
+      const emitter = new EventEmitter<EventMap>();
+      const listenerOne = jest.fn();
+      const listenerTwo = jest.fn();
+
+      emitter.addEventListener('meaningOfLife', listenerOne);
+      emitter.addEventListener('beep', listenerTwo);
+
+      emitter.removeAllEventListeners();
+      emitter.emit('meaningOfLife', 42);
+      emitter.emit('beep');
+
+      expect(listenerOne).toBeCalledTimes(0);
+      expect(listenerTwo).toBeCalledTimes(0);
+    });
   });
 
   describe('smoke test', () => {
