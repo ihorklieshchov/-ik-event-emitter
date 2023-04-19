@@ -113,6 +113,16 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
     });
   }
 
+  /**
+   * Subscribe listener to a specific event
+   *
+   * @remarks
+   * Alias for addEventListener
+   *
+   * @param name - event name
+   * @param listener - listener function
+   * @param options - used to configure subscription behavior
+   */
   on<K extends keyof T>(
     name: K,
     listener: Listener<T[K]>,
@@ -121,10 +131,28 @@ export class EventEmitter<T extends Record<string, Array<unknown>>> {
     this.addEventListener(name, listener, options);
   }
 
+  /**
+   * Subscribe the one-time listener to a specific event
+   *
+   * @remarks
+   * Alias for addEventListener with once=true set in options
+   *
+   * @param name - event name
+   * @param listener - listener function
+   */
   once<K extends keyof T>(name: K, listener: Listener<T[K]>) {
     this.addEventListener(name, listener, { once: true });
   }
 
+  /**
+   * Unsubscribe listener from a specific event
+   *
+   * @remarks
+   * Alias for removeEventListener
+   *
+   * @param name - event name
+   * @param listener - listener function
+   */
   off<K extends keyof T>(name: K, listener: Listener<T[K]>) {
     this.removeEventListener(name, listener);
   }
