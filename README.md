@@ -123,6 +123,8 @@ In this case we can configure the listener to unsubscribe itself after event emi
 // (using EventMap constraint)
 
 emitter.addEventListener('beep', listener, { once: true });
+// or
+emitter.once('beep', listener);
 ```
 
 ### API
