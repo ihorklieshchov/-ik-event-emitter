@@ -1,12 +1,12 @@
 /**
  * Event listener function with a variable list of arguments
  */
-type Listener<T extends Array<unknown>> = (...payload: T) => void;
+export type Listener<T extends Array<unknown>> = (...payload: T) => void;
 
 /**
  * Options used to configure event listener subscription
  */
-type AddEventListenerOptions = {
+export type AddEventListenerOptions = {
   /**
    * if true then listener should be unsubscribed after the first target event emitted
    */

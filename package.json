@@ -1,5 +1,5 @@
 {
-  "name": "@ik/event-emitter",
+  "name": "@kiolib/event-emitter",
   "version": "0.1.0",
   "type": "module",
   "files": [

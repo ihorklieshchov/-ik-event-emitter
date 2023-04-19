@@ -1,3 +1,5 @@
-import { EventEmitter } from './EventEmitter';
-
-export { EventEmitter };
+export {
+  type Listener,
+  type AddEventListenerOptions,
+  EventEmitter,
+} from './EventEmitter';
